@@ -6,7 +6,7 @@
 #    By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/08 10:29:07 by rapohlen          #+#    #+#              #
-#    Updated: 2025/10/23 17:21:04 by rapohlen         ###   ########.fr        #
+#    Updated: 2025/11/04 16:05:57 by rapohlen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,14 @@ SRC			= main.c error.c util.c tester.c \
 			  test_isdigit.c \
 			  test_tolower.c \
 			  test_toupper.c \
-			  test_atoi.c
+			  test_atoi.c \
+			  test_bzero.c \
+			  test_memset.c \
+			  test_memchr.c \
+			  test_strchr.c \
+			  test_strrchr.c \
+			  test_memcpy.c \
+			  test_strlcpy.c
 
 INCDIRS		= includes/ libft/
 SRCDIRS		= srcs/

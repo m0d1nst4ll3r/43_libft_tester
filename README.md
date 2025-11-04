@@ -29,23 +29,26 @@ Done:
 - toupper
 - atoi
 - strnstr
+- bzero
+- memset
+- memchr
+- strchr
+- strrchr
+- memcpy
+- strlcpy
+
+
+Working on:
 
 
 Remaining:
 
-- bzero
-- memchr
 - memcmp
-- memset
-- memcpy
 - memmove
-- strchr
 - strdup
 - strlcat
-- strlcpy
 - strlen
 - strncmp
-- strrchr
 
 - itoa
 - split

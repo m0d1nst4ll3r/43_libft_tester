@@ -6,15 +6,24 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/10/23 17:36:13 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:05:51 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_TESTER_H
 # define LIBFT_TESTER_H
 
-# define OK_STR				"\x1B[32mOK\033[0m"
-# define KO_STR				"\x1B[31mKO\033[0m"
+# ifndef BONUS
+#  define BONUS				0
+# endif
+
+# define KRED				"\x1B[31m"
+# define KGRN				"\x1B[32m"
+# define KMAG				"\x1B[35m"
+# define KRES				"\033[0m"
+
+# define OK_STR				KGRN "\x1B[32mOK\033[0m" KRES
+# define KO_STR				KRED "\x1B[31mKO\033[0m" KRES
 
 // # of tests to run for each loop
 # define TEST_N				100
@@ -28,10 +37,20 @@
 # define MED_TEST_CEIL		1000
 # define BIG_TEST_FLOOR		10000
 # define BIG_TEST_CEIL		100000
+# define BYTE_MIN			0
+# define BYTE_MAX			UCHAR_MAX
 
-// ft_strstr
+// ft_strnstr, ft_strchr
 # define STRSTR_CHAR_FLOOR	'a'
 # define STRSTR_CHAR_CEIL	'd'
+
+// ft_strchr, ft_strrchr
+# define STRCHR_CHAR_FLOOR	'a'
+# define STRCHR_CHAR_CEIL	'z'
+
+// ft_memchr
+# define MEMCHR_CHAR_FLOOR	0
+# define MEMCHR_CHAR_CEIL	10
 
 // ft_is[...]
 # define ISFUNC_FLOOR		-1
@@ -68,5 +87,12 @@ int		test_tolower(void);
 int		test_toupper(void);
 int		test_atoi(void);
 int		test_strnstr(void);
+int		test_bzero(void);
+int		test_memset(void);
+int		test_memchr(void);
+int		test_strchr(void);
+int		test_strrchr(void);
+int		test_memcpy(void);
+int		test_strlcpy(void);
 
 #endif
