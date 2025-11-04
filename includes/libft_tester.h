@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/04 16:05:51 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:13:00 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,8 @@ int		test_strchr(void);
 int		test_strrchr(void);
 int		test_memcpy(void);
 int		test_strlcpy(void);
+int		test_strlen(void);
+int		test_memcmp(void);
+int		test_strncmp(void);
 
 #endif

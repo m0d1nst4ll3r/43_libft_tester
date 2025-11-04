@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:10:17 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/04 16:06:31 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:13:15 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int	main(void)
 	printf("[%s] ft_strrchr\n", tester(test_strrchr));
 	printf("[%s] ft_memcpy\n", tester(test_memcpy));
 	printf("[%s] ft_strlcpy\n", tester(test_strlcpy));
+	printf("[%s] ft_strlen\n", tester(test_strlen));
+	printf("[%s] ft_memcmp\n", tester(test_memcmp));
+	printf("[%s] ft_strncmp\n", tester(test_strncmp));
 	printf("[%sPART2%s]\n", KMAG, KRES);
 	if (BONUS)
 		test_bonus();

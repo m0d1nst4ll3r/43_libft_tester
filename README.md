@@ -36,6 +36,9 @@ Done:
 - strrchr
 - memcpy
 - strlcpy
+- strlen
+- memcmp
+- strncmp
 
 
 Working on:
@@ -43,12 +46,9 @@ Working on:
 
 Remaining:
 
-- memcmp
 - memmove
 - strdup
 - strlcat
-- strlen
-- strncmp
 
 - itoa
 - split
