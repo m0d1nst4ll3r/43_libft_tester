@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/04 17:13:00 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/05 10:56:07 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 
 # include <stdlib.h>
 # include <bsd/string.h>
+# include <string.h>
 # include <stdio.h>
 # include <ctype.h>
 
