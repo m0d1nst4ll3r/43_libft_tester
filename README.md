@@ -41,14 +41,14 @@ Done:
 - strncmp
 - memmove
 - strdup
+- strlcat
 
 
 Working on:
+- calloc
 
 
 Remaining:
-
-- strlcat
 
 - itoa
 - split

@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/05 11:44:55 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:02:34 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ int		test_memcmp(void);
 int		test_strncmp(void);
 int		test_memmove(void);
 int		test_strdup(void);
+int		test_strlcat(void);
 
 #endif

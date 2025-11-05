@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:10:17 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/05 11:44:31 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:02:13 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	test_bonus(void)
 	printf("[%sBONUS%s]\n", KMAG, KRES);
 }
 
-int	main(void)
+static void	test_part1(void)
 {
 	printf("[%sPART1%s]\n", KMAG, KRES);
 	printf("[%s] ft_isascii\n", tester(test_isascii));
@@ -41,7 +41,18 @@ int	main(void)
 	printf("[%s] ft_strncmp\n", tester(test_strncmp));
 	printf("[%s] ft_memmove\n", tester(test_memmove));
 	printf("[%s] ft_strdup\n", tester(test_strdup));
+	printf("[%s] ft_strlcat\n", tester(test_strlcat));
+}
+
+static void	test_part2(void)
+{
 	printf("[%sPART2%s]\n", KMAG, KRES);
+}
+
+int	main(void)
+{
+	test_part1();
+	test_part2();
 	if (BONUS)
 		test_bonus();
 }
