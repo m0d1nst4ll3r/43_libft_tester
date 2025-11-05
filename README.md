@@ -39,6 +39,8 @@ Done:
 - strlen
 - memcmp
 - strncmp
+- memmove
+- strdup
 
 
 Working on:
@@ -46,8 +48,6 @@ Working on:
 
 Remaining:
 
-- memmove
-- strdup
 - strlcat
 
 - itoa

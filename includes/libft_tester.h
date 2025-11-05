@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/05 10:56:07 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:44:55 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@
 
 # include <stdlib.h>
 # include <bsd/string.h>
-# include <string.h>
 # include <stdio.h>
 # include <ctype.h>
 
@@ -74,6 +73,7 @@ char	*tester(int (*f)(void));
 // util
 int		rand_range(int a, int b);
 void	fill_str(char *s, int len, unsigned char lower, unsigned char upper);
+int		min(int a, int b);
 
 // error
 void	malloc_error(void);
@@ -98,5 +98,7 @@ int		test_strlcpy(void);
 int		test_strlen(void);
 int		test_memcmp(void);
 int		test_strncmp(void);
+int		test_memmove(void);
+int		test_strdup(void);
 
 #endif
