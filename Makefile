@@ -32,7 +32,8 @@ SRC			= main.c error.c util.c tester.c \
 			  test_strncmp.c \
 			  test_memmove.c \
 			  test_strdup.c \
-			  test_strlcat.c
+			  test_strlcat.c \
+			  test_calloc.c
 
 INCDIRS		= includes/ libft/
 SRCDIRS		= srcs/

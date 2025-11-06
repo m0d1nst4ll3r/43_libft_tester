@@ -23,26 +23,24 @@ static int	manual_test(void)
 	res = res || p == NULL;
 	free(p);
 	p = ft_calloc(1, 0);
-	res = res && (p != NULL);
+	res = res || p == NULL;
 	free(p);
 	p = ft_calloc(SIZE_MAX, 2);
-	res = res && (p == NULL);
+	res = res || p != NULL;
 	free(p);
 	p = ft_calloc(2, SIZE_MAX);
-	res = res && (p == NULL);
+	res = res || p != NULL;
 	free(p);
 	p = ft_calloc(10, 10);
 	p2 = calloc(10, 10);
-	res = res && !memcmp(p, p2, 100);
+	res = res || memcmp(p, p2, 100);
 	free(p);
-	if (!res)
-		return (1);
-	return (0);
+	return (res);
 }
 
 int	test_calloc(void)
 {
-	if (manual_test)
+	if (manual_test())
 		return (1);
 	return (0);
 }

@@ -67,6 +67,9 @@
 # include <stdio.h>
 # include <ctype.h>
 
+// For termux
+# include <strings.h>
+
 // tester
 char	*tester(int (*f)(void));
 
@@ -101,5 +104,6 @@ int		test_strncmp(void);
 int		test_memmove(void);
 int		test_strdup(void);
 int		test_strlcat(void);
+int		test_calloc(void);
 
 #endif

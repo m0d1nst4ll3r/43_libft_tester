@@ -42,6 +42,7 @@ static void	test_part1(void)
 	printf("[%s] ft_memmove\n", tester(test_memmove));
 	printf("[%s] ft_strdup\n", tester(test_strdup));
 	printf("[%s] ft_strlcat\n", tester(test_strlcat));
+	printf("[%s] ft_calloc\n", tester(test_calloc));
 }
 
 static void	test_part2(void)
