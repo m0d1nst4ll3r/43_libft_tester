@@ -6,11 +6,11 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 09:42:16 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/06 12:29:43 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:27:34 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_tester.h"
 
 char	*substr(const char *s, unsigned int start, size_t len)
 {
@@ -24,10 +24,7 @@ char	*substr(const char *s, unsigned int start, size_t len)
 		i++;
 	if (i < start)
 		return (NULL);
-	i = 0;
-	while (s[start + i] && i < len)
-		i++;
-	new = malloc(i + 1);
+	new = malloc(strlen(s + start) + 1);
 	if (!new)
 		return (new);
 	i = 0;

@@ -6,15 +6,16 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:35:52 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/06 12:44:52 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:30:39 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-int	test_split(void)
+int	test_split(t_tester *dat)
 {
-	if ()
-		return (1);
+	(void)dat;
+//	if ()
+//		return (1);
 	return (0);
 }

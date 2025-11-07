@@ -1,71 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_join.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/07 17:01:38 by rapohlen          #+#    #+#             */
+/*   Updated: 2025/11/07 19:30:07 by rapohlen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft_tester.h"
 
-static int	random_test_n(char *s1, int lower, int upper)
+static int	random_test_n(t_tester *dat, int lower, int upper)
 {
-	int		i;
-	int		n;
-	int		res;
-	char	*s2;
-	char	*s3;
-	char	*s4;
-
-	i = 0;
-	while (i < TEST_N)
+	dat->i2 = 0;
+	while (dat->i2 < TEST_N / 10)
 	{
-		n = rand_range(lower, upper);
-		s2 = malloc(n + 1);
-		if (!s2)
-		{
-			free(s1);
-			malloc_error();
-		}
-		fill_str(s2, n, 1, UCHAR_MAX);
-		s3 = ft_strjoin(s1, s2);
-		s4 = strjoin(s1, s2);
-		res = strcmp(s3, s4);
-		free(s2);
-		free(s3);
-		free(s4);
-		if (res)
+		dat->n = rand_range(lower, upper);
+		fill_str(dat->s2, dat->n, 1, UCHAR_MAX);
+		dat->ft_res = ft_strjoin(dat->s1, dat->s2);
+		dat->of_res = strjoin(dat->s1, dat->s2);
+		if (!dat->ft_res || dat->of_res)
+			malloc_error(dat);
+		dat->res = strcmp(dat->ft_res, dat->of_res);
+		free_null(&(dat->ft_res));
+		free_null(&(dat->of_res));
+		if (dat->res)
 			return (1);
-		i++;
+		dat->i2++;
 	}
 	return (0);
 }
 
-static int	random_test(void)
+static int	random_test(t_tester *dat, int lower, int upper)
 {
-	int		i;
-	int		n;
-	int		res;
-	char	*s1;
-
-	i = 0;
-	while (i < TEST_N)
+	dat->i = 0;
+	while (dat->i < TEST_N / 10)
 	{
-		n = rand_range(lower, upper);
-		s1 = malloc(n + 1);
-		if (!s1)
-			malloc_error();
-		fill_str(s1, n, 1, UCHAR_MAX);
-		res = random_test_n(s1, NUL_TEST_FLOOR, NUL_TEST_CEIL)
-			|| random_test_n(s1, SML_TEST_FLOOR, SML_TEST_CEIL)
-			|| random_test_n(s1, MED_TEST_FLOOR, MED_TEST_CEIL)
-			|| random_test_n(s1, BIG_TEST_FLOOR, BIG_TEST_CEIL);
-		free(s1);
-		if (res)
+		dat->n = rand_range(lower, upper);
+		fill_str(dat->s1, dat->n, 1, UCHAR_MAX);
+		if (random_test_n(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
+			|| random_test_n(dat, SML_TEST_FLOOR, SML_TEST_CEIL)
+			|| random_test_n(dat, MED_TEST_FLOOR, MED_TEST_CEIL)
+			|| random_test_n(dat, BIG_TEST_FLOOR, BIG_TEST_CEIL))
 			return (1);
-		i++;
+		dat->i++;
 	}
 	return (0);
 }
 
-int	test_strjoin(void)
+int	test_strjoin(t_tester *dat)
 {
-	if (random_test(NUL_TEST_FLOOR, NUL_TEST_FLOOR) 
-			|| random_test(s1, SML_TEST_FLOOR, SML_TEST_CEIL)
-			|| random_test(s1, MED_TEST_FLOOR, MED_TEST_CEIL)
-			|| random_test(s1, BIG_TEST_FLOOR, BIG_TEST_CEIL))
+	if (random_test(dat, NUL_TEST_FLOOR, NUL_TEST_FLOOR) 
+			|| random_test(dat, SML_TEST_FLOOR, SML_TEST_CEIL)
+			|| random_test(dat, MED_TEST_FLOOR, MED_TEST_CEIL)
+			|| random_test(dat, BIG_TEST_FLOOR, BIG_TEST_CEIL))
 		return (1);
 	return (0);
 }

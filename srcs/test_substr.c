@@ -6,123 +6,92 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 12:14:23 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/06 12:34:20 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:46:16 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-static int	manual_test(void)
+static void	manual_test_n(t_tester *dat, char *s, int n, int n2)
 {
-	char	*s1;
-	char	*s2;
-	int		res;
-
-	s1 = ft_substr("", 0, 0);
-	s2 = substr("", 0, 0);
-	res = strcmp(s1, s2);
-	free(s1);
-	free(s2);
-	s1 = ft_substr("", 0, 10);
-	s2 = substr("", 0, 10);
-	res = res || strcmp(s1, s2);
-	free(s1);
-	free(s2);
-	s1 = ft_substr("123", 3, 0);
-	s2 = substr("123", 3, 0);
-	res = res || strcmp(s1, s2);
-	free(s1);
-	free(s2);
-	s1 = ft_substr("123", 3, 10);
-	s2 = substr("123", 3, 10);
-	res = res || strcmp(s1, s2);
-	free(s1);
-	free(s2);
-	s1 = ft_substr("123", 1, 10);
-	s2 = substr("123", 1, 10);
-	res = res || strcmp(s1, s2);
-	free(s1);
-	free(s2);
-	return (res);
+	dat->ft_res = ft_substr(s, n, n2);
+	dat->of_res = substr(s, n, n2);
+	if (!dat->ft_res || !dat->of_res)
+		malloc_error(dat);
 }
 
-static int	random_test_n2(char *s, int n, int n2)
+static int	manual_test(t_tester *dat)
 {
-	char	*s1;
-	char	*s2;
-	int		i;
-	int		n3;
-	int		res;
+	manual_test_n(dat, "", 0, 0);
+	dat->res = strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	manual_test_n(dat, "", 0, 10);
+	dat->res = dat->res || strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	manual_test_n(dat, "123", 3, 0);
+	dat->res = dat->res || strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	manual_test_n(dat, "123", 3, 10);
+	dat->res = dat->res || strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	manual_test_n(dat, "123", 1, 10);
+	dat->res = dat->res || strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	return (dat->res);
+}
 
-	i = 0;
-	while (i < TEST_N / 10)
+static int	random_test_n(t_tester *dat)
+{
+	dat->i2 = 0;
+	while (dat->i2 < TEST_N / 10)
 	{
-		n3 = rand_range(0, n);
-		s1 = ft_substr(s, n2, n3);
-		s2 = substr(s, n2, n3);
-		if (!s1 || !s2)
+		dat->n2 = rand_range(0, dat->n);
+		dat->i3 = 0;
+		while (dat->i3 < TEST_N / 10)
 		{
-			free(s1);
-			free(s2);
-			malloc_error();
+			dat->n3 = rand_range(0, dat->n);
+			dat->ft_res = ft_substr(dat->s1, dat->n2, dat->n3);
+			dat->of_res = substr(dat->s1, dat->n2, dat->n3);
+			if (!dat->ft_res || !dat->of_res)
+				malloc_error(dat);
+			dat->res = strcmp(dat->s1, dat->s2);
+			free_null(&(dat->ft_res));
+			free_null(&(dat->of_res));
+			if (dat->res)
+				return (1);
+			dat->i3++;
 		}
-		res = strcmp(s1, s2);
-		free(s1);
-		free(s2);
-		if (res)
-			return (1);
-		i++;
+		dat->i2++;
 	}
 	return (0);
 }
 
-static int	random_test_n(char *s, int n)
+static int	random_test(t_tester *dat, int lower, int upper)
 {
-	int	i;
-	int	n2;
-
-	i = 0;
-	while (i < TEST_N / 10)
+	dat->i = 0;
+	while (dat->i < TEST_N / 10)
 	{
-		n2 = rand_range(0, n);
-		if (random_test_n2(s, n, n2))
+		dat->n = rand_range(lower, upper);
+		fill_str(dat->s1, dat->n, 1, UCHAR_MAX);
+		if (random_test_n(dat))
 			return (1);
-		i++;
+		dat->i++;
 	}
 	return (0);
 }
 
-static int	random_test(int lower, int upper)
+int	test_substr(t_tester *dat)
 {
-	char	*s;
-	int		n;
-	int		i;
-	int		res;
-
-	i = 0;
-	while (i < TEST_N / 10)
-	{
-		n = rand_range(lower, upper);
-		s = malloc(n + 1);
-		if (!s)
-			malloc_error();
-		fill_str(s, n, 1, UCHAR_MAX);
-		res = random_test_n(s, n);
-		free(s);
-		if (res)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	test_substr(void)
-{
-	if (manual_test()
-		|| random_test(NUL_TEST_FLOOR, NUL_TEST_CEIL)
-		|| random_test(SML_TEST_FLOOR, SML_TEST_CEIL)
-		|| random_test(MED_TEST_FLOOR, MED_TEST_CEIL)
-		|| random_test(BIG_TEST_FLOOR, BIG_TEST_CEIL))
+	if (manual_test(dat)
+		|| random_test(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
+		|| random_test(dat, SML_TEST_FLOOR, SML_TEST_CEIL)
+		|| random_test(dat, MED_TEST_FLOOR, MED_TEST_CEIL)
+		|| random_test(dat, BIG_TEST_FLOOR, BIG_TEST_CEIL))
 		return (1);
 	return (0);
 }

@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_tolower.c                                     :+:      :+:    :+:   */
+/*   util2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 16:48:30 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/07 13:38:30 by rapohlen         ###   ########.fr       */
+/*   Created: 2025/11/07 18:35:22 by rapohlen          #+#    #+#             */
+/*   Updated: 2025/11/07 18:35:49 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-static int	random_test(t_tester *dat)
+void	dummy(void *p)
 {
-	dat->i = 0;
-	while (dat->i < TEST_N * 100)
-	{
-		dat->n = rand_range(ISFUNC_FLOOR, ISFUNC_CEIL);
-		if (ft_tolower(dat->n) != tolower(dat->n))
-			return (1);
-		dat->i++;
-	}
-	return (0);
-}
-
-int	test_tolower(t_tester *dat)
-{
-	if (random_test(dat))
-		return (1);
-	return (0);
+	(void)p;
 }

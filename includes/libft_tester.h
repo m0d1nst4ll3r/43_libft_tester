@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/06 12:35:39 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:27:09 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define KMAG				"\x1B[35m"
 # define KRES				"\033[0m"
 
-# define OK_STR				KGRN "\x1B[32mOK\033[0m" KRES
-# define KO_STR				KRED "\x1B[31mKO\033[0m" KRES
+# define OK_STR				KGRN "OK" KRES
+# define KO_STR				KRED "KO" KRES
 
 // # of tests to run for each loop
 # define TEST_N				100
@@ -72,48 +72,95 @@
 // For termux
 # include <strings.h>
 
+// s1, s2, s3		sent to tested functions
+// res, res2		used to sum up multiple tests mostly in manual tests
+// n, n2, n3, n4	either sent to tested func or used for s1, s2...
+// i, i2, i3		used as iterators in test funcs
+// ft_res, tab		return of the tested funcs
+// of_res, tab		return of the official funcs
+// ft_list			list made with tested funcs
+// of_list			list made with official funcs
+typedef struct	s_tester
+{
+	char	*s1;
+	char	*s2;
+	char	*s3;
+	int		res;
+	int		res2;
+	int		n;
+	int		n2;
+	int		n3;
+	int		n4;
+	int		i;
+	int		i2;
+	int		i3;
+	char	*ft_res;
+	char	*of_res;
+	char	**ft_res_tab;
+	char	**of_res_tab;
+	t_list	*ft_list;
+	t_list	*of_list;
+}t_tester;
+
 // tester
-char	*tester(int (*f)(void));
+void	init_malloc(t_tester *dat);
+void	init_null(t_tester *dat);
+char	*tester(t_tester *dat, int (*f)(t_tester *dat));
 
 // util
 int		rand_range(int a, int b);
 void	fill_str(char *s, int len, unsigned char lower, unsigned char upper);
 int		min(int a, int b);
+int		ft_strscmp(char **tab1, char **tab2);
+void	free_null(char **p);
+void	dummy(void *p);
 
 // recoded functions
 char	*itoa(int n);
 char	**strsplit(const char *s, char c);
 char	*substr(const char *s, unsigned int start, size_t len);
+char	*strjoin(const char *s1, const char *s2);
+void	lstiter(t_list *lst, void (*f)(void *));
+t_list	*lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	lstdelone(t_list *lst, void (*del)(void *));
+void	lstclear(t_list **lst, void (*del)(void *));
+int		lstsize(t_list *lst);
+t_list	*lstnew(void *content);
+t_list	*lstlast(t_list *lst);
+void	lstadd_front(t_list **list, t_list *new);
+void	lstadd_back(t_list **lst, t_list *new);
+// more to come
 
 // error
-void	malloc_error(void);
+void	free_all(t_tester *dat);
+void	malloc_error(t_tester *dat);
 
 // tester funcs
-int		test_isascii(void);
-int		test_isalnum(void);
-int		test_isalpha(void);
-int		test_isdigit(void);
-int		test_isprint(void);
-int		test_tolower(void);
-int		test_toupper(void);
-int		test_atoi(void);
-int		test_strnstr(void);
-int		test_bzero(void);
-int		test_memset(void);
-int		test_memchr(void);
-int		test_strchr(void);
-int		test_strrchr(void);
-int		test_memcpy(void);
-int		test_strlcpy(void);
-int		test_strlen(void);
-int		test_memcmp(void);
-int		test_strncmp(void);
-int		test_memmove(void);
-int		test_strdup(void);
-int		test_strlcat(void);
-int		test_calloc(void);
-int		test_itoa(void);
-int		test_substr(void);
-int		test_split(void);
+int		test_isascii(t_tester *dat);
+int		test_isalnum(t_tester *dat);
+int		test_isalpha(t_tester *dat);
+int		test_isdigit(t_tester *dat);
+int		test_isprint(t_tester *dat);
+int		test_tolower(t_tester *dat);
+int		test_toupper(t_tester *dat);
+int		test_atoi(t_tester *dat);
+int		test_strnstr(t_tester *dat);
+int		test_bzero(t_tester *dat);
+int		test_memset(t_tester *dat);
+int		test_memchr(t_tester *dat);
+int		test_strchr(t_tester *dat);
+int		test_strrchr(t_tester *dat);
+int		test_memcpy(t_tester *dat);
+int		test_strlcpy(t_tester *dat);
+int		test_strlen(t_tester *dat);
+int		test_memcmp(t_tester *dat);
+int		test_strncmp(t_tester *dat);
+int		test_memmove(t_tester *dat);
+int		test_strdup(t_tester *dat);
+int		test_strlcat(t_tester *dat);
+int		test_calloc(t_tester *dat);
+int		test_itoa(t_tester *dat);
+int		test_substr(t_tester *dat);
+int		test_split(t_tester *dat);
 
 #endif

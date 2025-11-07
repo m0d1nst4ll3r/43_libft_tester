@@ -6,39 +6,33 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:46:37 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/05 15:00:56 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:27:56 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-static int	manual_test(void)
+static int	manual_test(t_tester *dat)
 {
-	char	*s1;
-	char	s2[100];
-	char	s3[100];
-	int		i;
-	int		res1;
-	int		res2;
+	char	*s;
 
-	s1 = "abc";
-	i = 0;
-	while (i < 10)
+	s = "abc";
+	while (dat->i < 10)
 	{
-		strcpy(s2, s1);
-		strcpy(s3, s1);
-		res1 = ft_strlcat(s2, s1, i);
-		res2 = strlcat(s3, s1, i);
-		if (res1 != res2 || strcmp(s2, s3))
+		strcpy(dat->s1, s);
+		strcpy(dat->s2, s);
+		dat->res = ft_strlcat(dat->s1, s, dat->i);
+		dat->res2 = strlcat(dat->s2, s, dat->i);
+		if (dat->res != dat->res2 || strcmp(dat->s1, dat->s2))
 			return (1);
-		i++;
+		dat->i++;
 	}
 	return (0);
 }
 
-int	test_strlcat(void)
+int	test_strlcat(t_tester *dat)
 {
-	if (manual_test())
+	if (manual_test(dat))
 		return (1);
 	return (0);
 }

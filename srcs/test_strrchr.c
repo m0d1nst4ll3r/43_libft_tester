@@ -6,58 +6,45 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:15:11 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/04 15:23:53 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:05:25 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-static int	random_test_c(char *s1)
+static int	random_test_n(t_tester *dat)
 {
-	int	i;
-	int	c;
-
-	i = 0;
-	while (i < TEST_N / 2)
+	dat->i2 = 0;
+	while (dat->i2 < TEST_N / 2)
 	{
-		c = rand_range(STRCHR_CHAR_FLOOR, STRCHR_CHAR_CEIL);
-		if (ft_strrchr(s1, c) != strrchr(s1, c))
+		dat->n2 = rand_range(STRCHR_CHAR_FLOOR, STRCHR_CHAR_CEIL);
+		if (ft_strrchr(dat->s1, dat->n2) != strrchr(dat->s1, dat->n2))
 			return (1);
-		i++;
+		dat->i2++;
 	}
 	return (0);
 }
 
-static int	random_test(int lower, int upper)
+static int	random_test(t_tester *dat, int lower, int upper)
 {
-	int		i;
-	char	*s1;
-	int		n;
-	int		res;
-
-	i = 0;
-	while (i < TEST_N / 2)
+	dat->i = 0;
+	while (dat->i < TEST_N / 2)
 	{
-		n = rand_range(lower, upper);
-		s1 = malloc(n + 1);
-		if (!s1) 
-			malloc_error();
-		fill_str(s1, n, STRCHR_CHAR_FLOOR, STRCHR_CHAR_CEIL);
-		res = random_test_c(s1);
-		free(s1);
-		if (res)
+		dat->n = rand_range(lower, upper);
+		fill_str(dat->s1, dat->n, STRCHR_CHAR_FLOOR, STRCHR_CHAR_CEIL);
+		if (random_test_n(dat))
 			return (1);
-		i++;
+		dat->i++;
 	}
 	return (0);
 }
 
-int	test_strrchr(void)
+int	test_strrchr(t_tester *dat)
 {
-	if (random_test(NUL_TEST_FLOOR, NUL_TEST_CEIL)
-		|| random_test(SML_TEST_CEIL, SML_TEST_CEIL)
-		|| random_test(MED_TEST_CEIL, MED_TEST_CEIL)
-		|| random_test(BIG_TEST_CEIL, BIG_TEST_CEIL))
+	if (random_test(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
+		|| random_test(dat, SML_TEST_CEIL, SML_TEST_CEIL)
+		|| random_test(dat, MED_TEST_CEIL, MED_TEST_CEIL)
+		|| random_test(dat, BIG_TEST_CEIL, BIG_TEST_CEIL))
 		return (1);
 	return (0);
 }

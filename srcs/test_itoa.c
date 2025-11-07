@@ -1,64 +1,63 @@
 #include "libft_tester.h"
 
-static int	manual_test(void)
+static void	manual_test_n(t_tester *dat, int n)
 {
-	char	*s1;
-	char	*s2;
-	int		res;
-
-	s1 = ft_itoa(2147483647);
-	s2 = itoa(2147483647);
-	res = strcmp(s1, s2);
-	free(s1);
-	free(s2);
-	s1 = ft_itoa(-2147483648);
-	s2 = itoa(-2147483648);
-	res = res || strcmp(s1, s2);
-	free(s1);
-	free(s2);
-	s1 = ft_itoa(0);
-	s2 = itoa(0);
-	res = res || strcmp(s1, s2);
-	free(s1);
-	free(s2);
-	return (res);
+	dat->ft_res = ft_itoa(n);
+	dat->of_res = itoa(n);
+	if (!dat->ft_res || !dat->of_res)
+		malloc_error(dat);
 }
 
-static int	random_test(int lower, int upper)
+static int	manual_test(t_tester *dat)
 {
-	int		n;
-	int		i;
-	char	*s1;
-	char	*s2;
-	int		res;
+	manual_test_n(dat, 2147483647);
+	dat->res = strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	manual_test_n(dat, -2147483648);
+	dat->res = dat->res || strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	manual_test_n(dat, 0);
+	dat->res = dat->res || strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	manual_test_n(dat, 10);
+	dat->res = dat->res || strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	manual_test_n(dat, -10);
+	dat->res = dat->res || strcmp(dat->ft_res, dat->of_res);
+	free_null(&(dat->ft_res));
+	free_null(&(dat->of_res));
+	return (dat->res);
+}
 
-	i = 0;
-	while (i < TEST_N * 100)
+static int	random_test(t_tester *dat, int lower, int upper)
+{
+	dat->i = 0;
+	while (dat->i < TEST_N * 100)
 	{
-		n = rand_range(lower, upper);
-		s1 = ft_itoa(n);
-		s2 = itoa(n);
-		if (!s1 || !s2)
-		{
-			free(s1);
-			free(s2);
-			malloc_error();
-		}
-		res = strcmp(s1, s2);
-		free(s1);
-		free(s2);
-		if (res)
+		dat->n = rand_range(lower, upper);
+		dat->ft_res = ft_itoa(dat->n);
+		dat->of_res = itoa(dat->n);
+		if (!dat->ft_res || !dat->of_res)
+			malloc_error(dat);
+		dat->res = strcmp(dat->s1, dat->s2);
+		free_null(&(dat->ft_res));
+		free_null(&(dat->of_res));
+		if (dat->res)
 			return (1);
-		i++;
+		dat->i++;
 	}
 	return (0);
 }
 
-int	test_itoa(void)
+int	test_itoa(t_tester *dat)
 {
-	if (manual_test()
-		|| random_test(0, INT_MAX)
-		|| random_test(INT_MIN, -1))
+	if (manual_test(dat)
+		|| random_test(dat, 0, INT_MAX)
+		|| random_test(dat, INT_MIN, -1))
 		return (1);
 	return (0);
 }

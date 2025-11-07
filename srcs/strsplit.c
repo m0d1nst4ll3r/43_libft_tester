@@ -6,11 +6,11 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 09:56:41 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/06 12:29:54 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:29:40 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft_tester.h"
 
 static size_t	count_words(const char *s, char c)
 {
@@ -54,7 +54,7 @@ static char	*create_string(const char *s, char c)
 	return (new);
 }
 
-static void	free_all(char **new, unsigned int count)
+static void	free_strs(char **new, unsigned int count)
 {
 	while (count--)
 		free(new[count]);
@@ -75,7 +75,7 @@ static int	fill_words(const char *s, char c, char **new)
 			new[count] = create_string(s + i, c);
 			if (!new[count])
 			{
-				free_all(new, count);
+				free_strs(new, count);
 				return (1);
 			}
 			count++;

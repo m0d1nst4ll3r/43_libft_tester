@@ -6,66 +6,46 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 11:41:41 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/04 13:53:24 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:38:55 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-static int	random_test_c(char *s1, char *s2, int n)
+static int	random_test_n(t_tester *dat)
 {
-	int	i;
-	int	c;
-
-	i = 0;
-	while (i < TEST_N / 10)
+	dat->i2 = 0;
+	while (dat->i2 < TEST_N / 10)
 	{
-		c = rand_range(BYTE_MIN, BYTE_MAX);
-		ft_memset(s1, c, n);
-		memset(s2, c, n);
-		if (memcmp(s1, s2, n))
+		dat->n2 = rand_range(BYTE_MIN, BYTE_MAX);
+		ft_memset(dat->s1, dat->n2, dat->n);
+		memset(dat->s2, dat->n2, dat->n);
+		if (memcmp(dat->s1, dat->s2, dat->n))
 			return (1);
-		i++;
+		dat->i2++;
 	}
 	return (0);
 }
 
-static int	random_test(int lower, int upper)
+static int	random_test(t_tester *dat, int lower, int upper)
 {
-	char	*s1;
-	char	*s2;
-	int		n;
-	int		i;
-	int		res;
-
-	i = 0;
-	while (i < TEST_N)
+	dat->i = 0;
+	while (dat->i < TEST_N)
 	{
-		n = rand_range(lower, upper);
-		s1 = malloc(n + 1);
-		s2 = malloc(n + 1);
-		if (!s1 || !s2)
-		{
-			free(s1);
-			free(s2);
-			malloc_error();
-		}
-		res = random_test_c(s1, s2, n);
-		free(s1);
-		free(s2);
-		if (res)
+		dat->n = rand_range(lower, upper);
+		if (random_test_n(dat))
 			return (1);
-		i++;
+		dat->i++;
 	}
 	return (0);
 }
 
-int	test_memset(void)
+int	test_memset(t_tester *dat)
 {
-	if (random_test(NUL_TEST_FLOOR, NUL_TEST_CEIL)
-		|| random_test(SML_TEST_FLOOR, SML_TEST_CEIL)
-		|| random_test(MED_TEST_FLOOR, MED_TEST_CEIL)
-		|| random_test(BIG_TEST_FLOOR, BIG_TEST_CEIL))
+	if (random_test(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
+		|| random_test(dat, SML_TEST_FLOOR, SML_TEST_CEIL)
+		|| random_test(dat, MED_TEST_FLOOR, MED_TEST_CEIL)
+		|| random_test(dat, BIG_TEST_FLOOR, BIG_TEST_CEIL))
 		return (1);
 	return (0);
 }

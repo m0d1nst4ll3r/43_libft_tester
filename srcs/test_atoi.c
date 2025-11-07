@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:13:07 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/10/23 17:31:40 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:38:34 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,32 @@
 
 static int	manual_test(void)
 {
-	char	*s;
-
-	s = "  100\xff";
-	if (ft_atoi(s) != atoi(s))
-		return (1);
-	s = "2147483647a";
-	if (ft_atoi(s) != atoi(s))
-		return (1);
-	s = "-2147483648a";
-	if (ft_atoi(s) != atoi(s))
-		return (1);
-	s = "--1";
-	if (ft_atoi(s) != atoi(s))
-		return (1);
-	s = "\t\n\v\f\r\n0a";
-	if (ft_atoi(s) != atoi(s))
+	if (ft_atoi("  100\xff") != atoi("  100\xff")
+		|| ft_atoi("2147483647a") != atoi("2147483647a")
+		|| ft_atoi("-2147483648a") != atoi("-2147483648a")
+		|| ft_atoi("--1") != atoi("--1")
+		|| ft_atoi("\t\n\v\f\r\n0a") != atoi("\t\n\v\f\r\n0a"))
 		return (1);
 	return (0);
 }
 
-static int	random_test(void)
+static int	random_test(t_tester *dat)
 {
-	int		i;
-	char	*s;
-	int		size;
-
-	i = 0;
-	while (i < TEST_N * 1000)
+	dat->i = 0;
+	while (dat->i < TEST_N * 1000)
 	{
-		size = rand_range(ATOI_FLOOR, ATOI_CEIL);
-		s = malloc(size + 1);
-		if (!s)
-			malloc_error();
-		fill_str(s, size, 0, UCHAR_MAX);
-		if (ft_atoi(s) != atoi(s))
+		dat->n = rand_range(ATOI_FLOOR, ATOI_CEIL);
+		fill_str(dat->s1, dat->n, 0, UCHAR_MAX);
+		if (ft_atoi(dat->s1) != atoi(dat->s1))
 			return (1);
-		free(s);
-		i++;
+		dat->i++;
 	}
 	return (0);
 }
 
-int	test_atoi(void)
+int	test_atoi(t_tester *dat)
 {
-	if (manual_test() || random_test())
+	if (manual_test() || random_test(dat))
 		return (1);
 	return (0);
 }

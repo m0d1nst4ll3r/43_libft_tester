@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:36:07 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/06 11:42:36 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:42:57 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,22 @@ int	min(int a, int b)
 	if (a < b)
 		return (a);
 	return (b);
+}
+
+int	strscmp(char **tab1, char **tab2)
+{
+	int	i;
+
+	i = 0;
+	while (tab1[i] && tab2[i] && !strcmp(tab1[i], tab2[i]))
+		i++;
+	if (tab1[i] || tab2[i])
+		return (1);
+	return (0);
+}
+
+void	free_null(char **p)
+{
+	free(*p);
+	p = NULL;
 }
