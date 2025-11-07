@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:10:17 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/05 15:02:13 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:35:31 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ static void	test_part1(void)
 static void	test_part2(void)
 {
 	printf("[%sPART2%s]\n", KMAG, KRES);
+	printf("[%s] ft_itoa\n", tester(test_itoa));
+	printf("[%s] ft_substr\n", tester(test_substr));
+	printf("[%s] ft_split\n", tester(test_split));
 }
 
 int	main(void)

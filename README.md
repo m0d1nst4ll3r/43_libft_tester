@@ -7,6 +7,14 @@ Remaining:
 1. Finish all test functions
 2. Create sh script to automatically make, run program, and run valgrind (only printing errors)
 
+Extra:
+
+1. Let user choose which tests to run (through command line?)
+2. Explicitly tell user how they failed
+3. Fix norm (?)
+4. Fix ugly malloc protection (and some are missing notably in manual tests)
+5. Fix random function which is the most basic one and only generates 0 to INT_MAX
+
 Unsure how to test:
 (so simple you can just read the code anyway)
 
@@ -42,15 +50,15 @@ Done:
 - memmove
 - strdup
 - strlcat
+- calloc
 
+- itoa
 
 Working on:
-- calloc
 
 
 Remaining:
 
-- itoa
 - split
 - join
 - striteri

@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 11:41:41 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/04 11:52:32 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:28:11 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	random_test(int lower, int upper)
 		res = memcmp(s1, s2, n);
 		free(s1);
 		free(s2);
-		if (!res)
+		if (res)
 			return (1);
 		i++;
 	}
@@ -46,10 +46,10 @@ static int	random_test(int lower, int upper)
 
 int	test_bzero(void)
 {
-	if (!random_test(NUL_TEST_FLOOR, NUL_TEST_CEIL)
-		|| !random_test(SML_TEST_FLOOR, SML_TEST_CEIL)
-		|| !random_test(MED_TEST_FLOOR, MED_TEST_CEIL)
-		|| !random_test(BIG_TEST_FLOOR, BIG_TEST_CEIL))
+	if (random_test(NUL_TEST_FLOOR, NUL_TEST_CEIL)
+		|| random_test(SML_TEST_FLOOR, SML_TEST_CEIL)
+		|| random_test(MED_TEST_FLOOR, MED_TEST_CEIL)
+		|| random_test(BIG_TEST_FLOOR, BIG_TEST_CEIL))
 		return (1);
 	return (0);
 }

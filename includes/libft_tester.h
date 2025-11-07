@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/05 15:02:34 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:35:39 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@
 
 # include "libft.h"
 
-# include <stdlib.h>
 # include <bsd/string.h>
+# include <string.h>
+# include <limits.h>
+# include <stdint.h>
 # include <stdio.h>
 # include <ctype.h>
 
@@ -77,6 +79,11 @@ char	*tester(int (*f)(void));
 int		rand_range(int a, int b);
 void	fill_str(char *s, int len, unsigned char lower, unsigned char upper);
 int		min(int a, int b);
+
+// recoded functions
+char	*itoa(int n);
+char	**strsplit(const char *s, char c);
+char	*substr(const char *s, unsigned int start, size_t len);
 
 // error
 void	malloc_error(void);
@@ -105,5 +112,8 @@ int		test_memmove(void);
 int		test_strdup(void);
 int		test_strlcat(void);
 int		test_calloc(void);
+int		test_itoa(void);
+int		test_substr(void);
+int		test_split(void);
 
 #endif
