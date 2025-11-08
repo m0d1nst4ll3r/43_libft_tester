@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strnstr.c                                     :+:      :+:    :+:   */
+/*   test_striteri.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 17:15:11 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/08 13:47:08 by rapohlen         ###   ########.fr       */
+/*   Created: 2025/11/08 16:10:01 by rapohlen          #+#    #+#             */
+/*   Updated: 2025/11/08 16:47:06 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-static int	random_test_n(t_tester *dat, int lower, int upper)
+// Stupid function that does nothing smart, because striteri is useless
+static void	striteri_tester(unsigned int i, char *c)
 {
-	dat->i2 = 0;
-	while (dat->i2 < TEST_N / 20)
+	if (i % 2)
+		*c = 'l';
+	else
+		*c = 'o';
+}
+
+static int	check_iteri_string(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
-		dat->n2 = rand_range(lower, upper);
-		fill_str(dat->s2, dat->n2, STRSTR_CHAR_FLOOR, STRSTR_CHAR_CEIL);
-		dat->i3 = 0;
-		while (dat->i3 < TEST_N / 20)
-		{
-			dat->n3 = rand_range(0, dat->n);
-			if (ft_strnstr(dat->s1, dat->s2, dat->n3)
-					!= strnstr(dat->s1, dat->s2, dat->n3))
-				return (1);
-			dat->i3++;
-		}
-		dat->i2++;
+		if ((i % 2 && s[i] != 'l')
+			|| (!(i % 2) && s[i] != 'o'))
+			return (1);
+		i++;
 	}
 	return (0);
 }
@@ -39,18 +42,16 @@ static int	random_test(t_tester *dat, int lower, int upper)
 	while (dat->i < TEST_N / 20)
 	{
 		dat->n = rand_range(lower, upper);
-		fill_str(dat->s1, dat->n, STRSTR_CHAR_FLOOR, STRSTR_CHAR_CEIL);
-		if (random_test_n(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
-			|| random_test_n(dat, SML_TEST_FLOOR, SML_TEST_CEIL)
-			|| random_test_n(dat, MED_TEST_FLOOR, MED_TEST_CEIL)
-			|| random_test_n(dat, BIG_TEST_FLOOR, BIG_TEST_CEIL))
+		fill_str(dat->s1, dat->n, 1, UCHAR_MAX);
+		ft_striteri(dat->s1, striteri_tester);
+		if (check_iteri_string(dat->s1))
 			return (1);
 		dat->i++;
 	}
 	return (0);
 }
 
-int	test_strnstr(t_tester *dat)
+int	test_striteri(t_tester *dat)
 {
 	if (random_test(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
 		|| random_test(dat, SML_TEST_CEIL, SML_TEST_CEIL)

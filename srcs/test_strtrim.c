@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strnstr.c                                     :+:      :+:    :+:   */
+/*   test_strtrim.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 17:15:11 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/08 13:47:08 by rapohlen         ###   ########.fr       */
+/*   Created: 2025/11/08 16:01:11 by rapohlen          #+#    #+#             */
+/*   Updated: 2025/11/08 16:08:57 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,17 @@
 static int	random_test_n(t_tester *dat, int lower, int upper)
 {
 	dat->i2 = 0;
-	while (dat->i2 < TEST_N / 20)
+	while (dat->i2 < TEST_N / 10)
 	{
 		dat->n2 = rand_range(lower, upper);
-		fill_str(dat->s2, dat->n2, STRSTR_CHAR_FLOOR, STRSTR_CHAR_CEIL);
-		dat->i3 = 0;
-		while (dat->i3 < TEST_N / 20)
-		{
-			dat->n3 = rand_range(0, dat->n);
-			if (ft_strnstr(dat->s1, dat->s2, dat->n3)
-					!= strnstr(dat->s1, dat->s2, dat->n3))
-				return (1);
-			dat->i3++;
-		}
+		fill_str(dat->s2, dat->n2, 1, UCHAR_MAX);
+		dat->ft_res = ft_strtrim(dat->s1, dat->s2);
+		dat->of_res = strtrim(dat->s1, dat->s2);
+		dat->res = strcmp(dat->ft_res, dat->of_res);
+		free_null(&(dat->ft_res));
+		free_null(&(dat->of_res));
+		if (dat->res)
+			return (1);
 		dat->i2++;
 	}
 	return (0);
@@ -36,10 +34,10 @@ static int	random_test_n(t_tester *dat, int lower, int upper)
 static int	random_test(t_tester *dat, int lower, int upper)
 {
 	dat->i = 0;
-	while (dat->i < TEST_N / 20)
+	while (dat->i < TEST_N / 10)
 	{
 		dat->n = rand_range(lower, upper);
-		fill_str(dat->s1, dat->n, STRSTR_CHAR_FLOOR, STRSTR_CHAR_CEIL);
+		fill_str(dat->s1, dat->n, 1, UCHAR_MAX);
 		if (random_test_n(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
 			|| random_test_n(dat, SML_TEST_FLOOR, SML_TEST_CEIL)
 			|| random_test_n(dat, MED_TEST_FLOOR, MED_TEST_CEIL)
@@ -50,12 +48,12 @@ static int	random_test(t_tester *dat, int lower, int upper)
 	return (0);
 }
 
-int	test_strnstr(t_tester *dat)
+int	test_strtrim(t_tester *dat)
 {
 	if (random_test(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
-		|| random_test(dat, SML_TEST_CEIL, SML_TEST_CEIL)
-		|| random_test(dat, MED_TEST_CEIL, MED_TEST_CEIL)
-		|| random_test(dat, BIG_TEST_CEIL, BIG_TEST_CEIL))
+		|| random_test(dat, SML_TEST_FLOOR, SML_TEST_CEIL)
+		|| random_test(dat, MED_TEST_FLOOR, MED_TEST_CEIL)
+		|| random_test(dat, BIG_TEST_FLOOR, BIG_TEST_CEIL))
 		return (1);
 	return (0);
 }

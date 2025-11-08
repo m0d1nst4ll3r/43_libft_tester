@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strnstr.c                                     :+:      :+:    :+:   */
+/*   test_strmapi.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 17:15:11 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/08 13:47:08 by rapohlen         ###   ########.fr       */
+/*   Created: 2025/11/08 16:48:38 by rapohlen          #+#    #+#             */
+/*   Updated: 2025/11/08 17:41:20 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-static int	random_test_n(t_tester *dat, int lower, int upper)
+// Another stupid function that also doesn't do anything smart
+//	because strmapi is useless
+static char	strmapi_tester(unsigned int i, char c)
 {
-	dat->i2 = 0;
-	while (dat->i2 < TEST_N / 20)
+	if (i % 2)
+		return ('l');
+	if (c % 2)
+		return ('i');
+	return ('o');
+}
+
+static int	check_mapi_string(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i])
 	{
-		dat->n2 = rand_range(lower, upper);
-		fill_str(dat->s2, dat->n2, STRSTR_CHAR_FLOOR, STRSTR_CHAR_CEIL);
-		dat->i3 = 0;
-		while (dat->i3 < TEST_N / 20)
+		if (i % 2 && s1[i] != 'l')
+			return (1);
+		else if (!(i % 2))
 		{
-			dat->n3 = rand_range(0, dat->n);
-			if (ft_strnstr(dat->s1, dat->s2, dat->n3)
-					!= strnstr(dat->s1, dat->s2, dat->n3))
+			if ((s2[i] % 2 && s1[i] != 'i')
+				|| (!(s2[i] % 2) && s1[i] != 'o'))
 				return (1);
-			dat->i3++;
 		}
-		dat->i2++;
+		i++;
 	}
 	return (0);
 }
@@ -36,21 +46,21 @@ static int	random_test_n(t_tester *dat, int lower, int upper)
 static int	random_test(t_tester *dat, int lower, int upper)
 {
 	dat->i = 0;
-	while (dat->i < TEST_N / 20)
+	while (dat->i < TEST_N)
 	{
 		dat->n = rand_range(lower, upper);
-		fill_str(dat->s1, dat->n, STRSTR_CHAR_FLOOR, STRSTR_CHAR_CEIL);
-		if (random_test_n(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
-			|| random_test_n(dat, SML_TEST_FLOOR, SML_TEST_CEIL)
-			|| random_test_n(dat, MED_TEST_FLOOR, MED_TEST_CEIL)
-			|| random_test_n(dat, BIG_TEST_FLOOR, BIG_TEST_CEIL))
+		fill_str(dat->s1, dat->n, 1, UCHAR_MAX);
+		dat->ft_res = ft_strmapi(dat->s1, strmapi_tester);
+		dat->res = check_mapi_string(dat->ft_res, dat->s1);
+		free_null(&(dat->ft_res));
+		if (dat->res)
 			return (1);
 		dat->i++;
 	}
 	return (0);
 }
 
-int	test_strnstr(t_tester *dat)
+int	test_strmapi(t_tester *dat)
 {
 	if (random_test(dat, NUL_TEST_FLOOR, NUL_TEST_CEIL)
 		|| random_test(dat, SML_TEST_CEIL, SML_TEST_CEIL)

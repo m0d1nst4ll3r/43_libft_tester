@@ -6,12 +6,13 @@
 #    By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/08 10:29:07 by rapohlen          #+#    #+#              #
-#    Updated: 2025/11/07 18:47:36 by rapohlen         ###   ########.fr        #
+#    Updated: 2025/11/08 16:48:16 by rapohlen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			= main.c error.c util.c util2.c tester.c \
-			  itoa.c substr.c strsplit.c strjoin.c list.c list2.c \
+SRC			= main.c error.c init.c free.c util.c util2.c tester.c \
+			  itoa.c substr.c strsplit.c strjoin.c strtrim.c \
+			  list.c list2.c \
 			  test_strnstr.c \
 			  test_isascii.c \
 			  test_isalpha.c \
@@ -38,7 +39,10 @@ SRC			= main.c error.c util.c util2.c tester.c \
 			  test_itoa.c \
 			  test_substr.c \
 			  test_join.c \
-			  test_split.c
+			  test_split.c \
+			  test_strtrim.c \
+			  test_striteri.c \
+			  test_strmapi.c
 
 INCDIRS		= includes/ libft/
 SRCDIRS		= srcs/

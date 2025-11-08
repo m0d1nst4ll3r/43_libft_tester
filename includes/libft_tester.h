@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/07 19:27:09 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:49:57 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # define KO_STR				KRED "KO" KRES
 
 // # of tests to run for each loop
-# define TEST_N				100
+// More = more thorough, but slower, esp for valgrind
+# define TEST_N				40
 
 // global
 # define NUL_TEST_FLOOR		0
@@ -60,17 +61,17 @@
 # define ATOI_FLOOR			0
 # define ATOI_CEIL			100
 
-# include "libft.h"
-
+# include <time.h>
 # include <bsd/string.h>
 # include <string.h>
 # include <limits.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <ctype.h>
-
 // For termux
 # include <strings.h>
+
+# include "libft.h"
 
 // s1, s2, s3		sent to tested functions
 // res, res2		used to sum up multiple tests mostly in manual tests
@@ -103,23 +104,32 @@ typedef struct	s_tester
 }t_tester;
 
 // tester
-void	init_malloc(t_tester *dat);
-void	init_null(t_tester *dat);
 char	*tester(t_tester *dat, int (*f)(t_tester *dat));
 
 // util
 int		rand_range(int a, int b);
 void	fill_str(char *s, int len, unsigned char lower, unsigned char upper);
 int		min(int a, int b);
-int		ft_strscmp(char **tab1, char **tab2);
-void	free_null(char **p);
+int		strscmp(char **tab1, char **tab2);
 void	dummy(void *p);
+
+// init
+void	init_malloc(t_tester *dat);
+void	init_null(t_tester *dat);
+
+// free
+void	free_null(char **p);
+void	free_tab(char ***tab);
+void	free_all(t_tester *dat);
 
 // recoded functions
 char	*itoa(int n);
 char	**strsplit(const char *s, char c);
 char	*substr(const char *s, unsigned int start, size_t len);
 char	*strjoin(const char *s1, const char *s2);
+char	*strtrim(const char *s1, const char *s2);
+
+// list recoded funcs
 void	lstiter(t_list *lst, void (*f)(void *));
 t_list	*lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	lstdelone(t_list *lst, void (*del)(void *));
@@ -132,7 +142,6 @@ void	lstadd_back(t_list **lst, t_list *new);
 // more to come
 
 // error
-void	free_all(t_tester *dat);
 void	malloc_error(t_tester *dat);
 
 // tester funcs
@@ -160,7 +169,11 @@ int		test_strdup(t_tester *dat);
 int		test_strlcat(t_tester *dat);
 int		test_calloc(t_tester *dat);
 int		test_itoa(t_tester *dat);
+int		test_strjoin(t_tester *dat);
 int		test_substr(t_tester *dat);
 int		test_split(t_tester *dat);
+int		test_strtrim(t_tester *dat);
+int		test_striteri(t_tester *dat);
+int		test_strmapi(t_tester *dat);
 
 #endif

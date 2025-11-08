@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   strtrim.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 17:27:08 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/08 13:48:27 by rapohlen         ###   ########.fr       */
+/*   Created: 2025/10/08 09:49:16 by rapohlen          #+#    #+#             */
+/*   Updated: 2025/11/08 16:08:03 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-void	malloc_error(t_tester *dat)
+char	*strtrim(const char *s, const char *set)
 {
-	free_all(dat);
-	printf("Malloc error. Exiting.\n");
-	exit(1);
+	char	*new;
+	size_t	start;
+	size_t	end;
+
+	if (!s || !set)
+		return (NULL);
+	start = 0;
+	while (s[start] && strchr(set, s[start]))
+		start++;
+	if (s[start])
+	{
+		end = strlen(s + start) + start;
+		while (strchr(set, s[end - 1]))
+			end--;
+	}
+	else
+		end = start;
+	new = substr(s, start, end - start);
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:10:17 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/07 18:29:53 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:50:28 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,22 @@ static void	test_part2(t_tester *dat)
 	printf("[%s] ft_itoa\n", tester(dat, test_itoa));
 	printf("[%s] ft_substr\n", tester(dat, test_substr));
 	printf("[%s] ft_split\n", tester(dat, test_split));
+	printf("[%s] ft_strjoin\n", tester(dat, test_strjoin));
+	printf("[%s] ft_strtrim\n", tester(dat, test_strtrim));
+	printf("[%s] ft_striteri\n", tester(dat, test_striteri));
+	printf("[%s] ft_strmapi\n", tester(dat, test_strmapi));
 }
 
 int	main(void)
 {
 	t_tester	dat;
 
+	srand(time(NULL));
 	init_null(&dat);
 	init_malloc(&dat);
 	test_part1(&dat);
 	test_part2(&dat);
 	if (BONUS)
 		test_bonus(&dat);
+	free_all(&dat);
 }

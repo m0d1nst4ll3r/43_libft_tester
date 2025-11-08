@@ -43,7 +43,7 @@ static int	random_test(t_tester *dat, int lower, int upper)
 		dat->of_res = itoa(dat->n);
 		if (!dat->ft_res || !dat->of_res)
 			malloc_error(dat);
-		dat->res = strcmp(dat->s1, dat->s2);
+		dat->res = strcmp(dat->ft_res, dat->of_res);
 		free_null(&(dat->ft_res));
 		free_null(&(dat->of_res));
 		if (dat->res)

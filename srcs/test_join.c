@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 17:01:38 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/07 19:30:07 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/08 17:50:52 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	random_test_n(t_tester *dat, int lower, int upper)
 		fill_str(dat->s2, dat->n, 1, UCHAR_MAX);
 		dat->ft_res = ft_strjoin(dat->s1, dat->s2);
 		dat->of_res = strjoin(dat->s1, dat->s2);
-		if (!dat->ft_res || dat->of_res)
+		if (!dat->ft_res || !dat->of_res)
 			malloc_error(dat);
 		dat->res = strcmp(dat->ft_res, dat->of_res);
 		free_null(&(dat->ft_res));
