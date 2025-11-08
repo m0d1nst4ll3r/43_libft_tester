@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:10:17 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/08 17:50:28 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:27:09 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	test_bonus(t_tester *dat)
 {
 	printf("[%sBONUS%s]\n", KMAG, KRES);
+	printf("[%s] ft_lstnew\n", tester(dat, test_lstnew));
 	(void)dat;
 }
 

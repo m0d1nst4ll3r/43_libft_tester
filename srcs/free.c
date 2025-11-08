@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/08 13:48:13 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/08 15:48:17 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:28:12 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	free_all(t_tester *dat)
 	free(dat->of_res);
 	free_tab(&(dat->ft_res_tab));
 	free_tab(&(dat->of_res_tab));
-	lstclear(&(dat->ft_list), dummy);
-	lstclear(&(dat->of_list), dummy);
+	lstclear(&(dat->ft_list), list_free_func);
+	lstclear(&(dat->of_list), list_free_func);
 }

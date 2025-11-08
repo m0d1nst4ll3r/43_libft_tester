@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/08 17:49:57 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:34:09 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_TESTER_H
 
 # ifndef BONUS
-#  define BONUS				0
+#  define BONUS				1
 # endif
 
 # define KRED				"\x1B[31m"
@@ -111,7 +111,7 @@ int		rand_range(int a, int b);
 void	fill_str(char *s, int len, unsigned char lower, unsigned char upper);
 int		min(int a, int b);
 int		strscmp(char **tab1, char **tab2);
-void	dummy(void *p);
+void	list_free_func(void *p);
 
 // init
 void	init_malloc(t_tester *dat);
@@ -175,5 +175,6 @@ int		test_split(t_tester *dat);
 int		test_strtrim(t_tester *dat);
 int		test_striteri(t_tester *dat);
 int		test_strmapi(t_tester *dat);
+int		test_lstnew(t_tester *dat);
 
 #endif

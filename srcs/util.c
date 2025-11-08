@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:36:07 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/08 13:48:43 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:06:26 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,9 @@ int	strscmp(char **tab1, char **tab2)
 	if (tab1[i] || tab2[i])
 		return (1);
 	return (0);
+}
+
+void	list_free_func(void *p)
+{
+	free(p);
 }

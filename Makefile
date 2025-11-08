@@ -6,11 +6,11 @@
 #    By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/08 10:29:07 by rapohlen          #+#    #+#              #
-#    Updated: 2025/11/08 16:48:16 by rapohlen         ###   ########.fr        #
+#    Updated: 2025/11/08 18:37:19 by rapohlen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			= main.c error.c init.c free.c util.c util2.c tester.c \
+SRC			= main.c error.c init.c free.c util.c tester.c \
 			  itoa.c substr.c strsplit.c strjoin.c strtrim.c \
 			  list.c list2.c \
 			  test_strnstr.c \
@@ -42,7 +42,8 @@ SRC			= main.c error.c init.c free.c util.c util2.c tester.c \
 			  test_split.c \
 			  test_strtrim.c \
 			  test_striteri.c \
-			  test_strmapi.c
+			  test_strmapi.c \
+			  test_lstnew.c
 
 INCDIRS		= includes/ libft/
 SRCDIRS		= srcs/
@@ -63,7 +64,7 @@ NAME		= libft_tester
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			make -C libft
+			make bonus -C libft
 			$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
 clean:
