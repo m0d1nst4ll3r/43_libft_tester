@@ -6,18 +6,18 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:15:11 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/07 18:07:17 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/10 12:18:46 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-static int	random_test_n(t_tester *dat)
+static int	random_test_n(t_tester *dat, int lower, int upper)
 {
 	dat->i2 = 0;
 	while (dat->i2 < TEST_N)
 	{
-		dat->n2 = rand_range(MEMCHR_CHAR_FLOOR, MEMCHR_CHAR_CEIL);
+		dat->n2 = rand_range(lower, upper);
 		if (ft_memchr(dat->s1, dat->n2, dat->n)
 			!= memchr(dat->s1, dat->n2, dat->n))
 			return (1);
@@ -33,7 +33,7 @@ static int	random_test(t_tester *dat, int lower, int upper)
 	{
 		dat->n = rand_range(lower, upper);
 		fill_str(dat->s1, dat->n, MEMCHR_CHAR_FLOOR, MEMCHR_CHAR_CEIL);
-		if (random_test_n(dat))
+		if (random_test_n(dat, 0, INT_MAX) || random_test_n(dat, INT_MIN, -1))
 			return (1);
 		dat->i++;
 	}
