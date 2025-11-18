@@ -6,7 +6,7 @@
 /*   By: rapohlen <rapohlen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:07:18 by rapohlen          #+#    #+#             */
-/*   Updated: 2025/11/08 18:34:09 by rapohlen         ###   ########.fr       */
+/*   Updated: 2025/11/18 12:17:49 by rapohlen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@
 # define ATOI_CEIL			100
 
 # include <time.h>
+# include <stdlib.h>
 # include <bsd/string.h>
 # include <string.h>
 # include <limits.h>
